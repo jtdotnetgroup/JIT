@@ -3,12 +3,13 @@ using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
+using Abp.Dependency;
 using Abp.Domain.Repositories;
 using Abp.EntityFramework;
 
 namespace JITEF.DIME2Barcode
 {
-    public class DIME2BarcodeContext:AbpDbContext
+    public class DIME2BarcodeContext:AbpDbContext,ITransientDependency
     {
 
         //private static  DIME2BarcodeContext context;
