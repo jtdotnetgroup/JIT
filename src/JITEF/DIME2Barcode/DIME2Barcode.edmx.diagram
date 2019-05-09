@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6331ad9b347e4f24ada6e3b0494f6d73" Name="Diagram1" >
+        <EntityTypeShape EntityType="DIME2Barcode.VW_MOBillList" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DIME2Barcode.BillStatus" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DIME2Barcode.ICException" Width="1.5" PointX="3.75" PointY="3.75" />
+        <EntityTypeShape EntityType="DIME2Barcode.ICMaterialPicking" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DIME2Barcode.ICMODaily" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="DIME2Barcode.ICMODispBill" Width="1.5" PointX="5.75" PointY="4.75" />
+        <EntityTypeShape EntityType="DIME2Barcode.ICMOInspectBill" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DIME2Barcode.ICMOSchedule" Width="1.5" PointX="2.75" PointY="7.75" />
+        <EntityTypeShape EntityType="DIME2Barcode.ICQualityRpt" Width="1.5" PointX="7.75" PointY="7.75" />
+        <EntityTypeShape EntityType="DIME2Barcode.T_PrintTemplate" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DIME2Barcode.TB_BadItemRelation" Width="1.5" PointX="9.75" PointY="4.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

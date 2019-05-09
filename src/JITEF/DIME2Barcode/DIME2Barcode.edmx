@@ -1,0 +1,773 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DIME2Barcode.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BillStatus">
+          <Key>
+            <PropertyRef Name="FTranType" />
+            <PropertyRef Name="FStatus" />
+          </Key>
+          <Property Name="FTranType" Type="int" Nullable="false" />
+          <Property Name="FTranName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FStatus" Type="int" Nullable="false" />
+          <Property Name="FName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="FNote" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="ICException">
+          <Key>
+            <PropertyRef Name="FID" />
+          </Key>
+          <Property Name="FID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FSrcID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FBiller" Type="varchar" MaxLength="100" />
+          <Property Name="FTime" Type="datetime" />
+          <Property Name="FRemark" Type="varchar" MaxLength="255" />
+          <Property Name="FRecoverTime" Type="datetime" />
+          <Property Name="FNote" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ICMaterialPicking">
+          <Key>
+            <PropertyRef Name="FID" />
+          </Key>
+          <Property Name="FID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FSrcID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FEntryID" Type="int" Nullable="false" />
+          <Property Name="FItemID" Type="int" />
+          <Property Name="FUnitID" Type="int" />
+          <Property Name="FBatchNo" Type="varchar" MaxLength="200" />
+          <Property Name="FAuxQty" Type="decimal" Precision="28" Scale="8" />
+          <Property Name="FBiller" Type="varchar" MaxLength="100" />
+          <Property Name="FDate" Type="datetime" />
+          <Property Name="FNote" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ICMODaily">
+          <Key>
+            <PropertyRef Name="FID" />
+          </Key>
+          <Property Name="FID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FSrcID" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="FBillNo" Type="varchar" MaxLength="200" />
+          <Property Name="FTranType" Type="int" />
+          <Property Name="FStatus" Type="int" Nullable="false" />
+          <Property Name="FClosed" Type="bit" />
+          <Property Name="FMOInterID" Type="int" />
+          <Property Name="FMOBillNo" Type="varchar" MaxLength="200" />
+          <Property Name="FEntryID" Type="int" Nullable="false" />
+          <Property Name="FDate" Type="datetime" Nullable="false" />
+          <Property Name="FShift" Type="int" />
+          <Property Name="FWorkCenterID" Type="int" />
+          <Property Name="FMachineID" Type="int" />
+          <Property Name="FWorker" Type="varchar" MaxLength="200" />
+          <Property Name="FPlanAuxQty" Type="decimal" Precision="28" Scale="8" />
+          <Property Name="FCommitAuxQty" Type="decimal" Precision="28" Scale="8" />
+          <Property Name="FFinishAuxQty" Type="decimal" Precision="28" Scale="8" />
+          <Property Name="FPassAuxQty" Type="decimal" Precision="38" Scale="10" />
+          <Property Name="FFailAuxQty" Type="decimal" Precision="38" Scale="10" />
+          <Property Name="FOperID" Type="int" />
+          <Property Name="FOperNote" Type="varchar" MaxLength="2000" />
+          <Property Name="FBiller" Type="varchar" MaxLength="200" />
+          <Property Name="FBillTime" Type="datetime" />
+          <Property Name="FChecker" Type="varchar" MaxLength="200" />
+          <Property Name="FCheckTime" Type="datetime" />
+          <Property Name="FCloser" Type="varchar" MaxLength="200" />
+          <Property Name="FCloseTime" Type="datetime" />
+          <Property Name="FNote" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ICMODispBill">
+          <Key>
+            <PropertyRef Name="FID" />
+          </Key>
+          <Property Name="FID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FSrcID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FBillNo" Type="varchar" MaxLength="200" />
+          <Property Name="FTranType" Type="int" Nullable="false" />
+          <Property Name="FStatus" Type="int" Nullable="false" />
+          <Property Name="FClosed" Type="bit" />
+          <Property Name="FMOInterID" Type="int" />
+          <Property Name="FMOBillNo" Type="varchar" MaxLength="200" />
+          <Property Name="FDate" Type="datetime" Nullable="false" />
+          <Property Name="FShift" Type="int" />
+          <Property Name="FOperID" Type="int" />
+          <Property Name="FWorkCenterID" Type="int" />
+          <Property Name="FMachineID" Type="int" />
+          <Property Name="FWorker" Type="varchar" MaxLength="200" />
+          <Property Name="FPlanAuxQty" Type="decimal" Precision="28" Scale="8" />
+          <Property Name="FCommitAuxQty" Type="decimal" Precision="28" Scale="8" />
+          <Property Name="FFinishAuxQty" Type="decimal" Precision="28" Scale="8" />
+          <Property Name="FFInspectAuxQty" Type="decimal" Precision="28" Scale="8" />
+          <Property Name="FPassAuxQty" Type="decimal" Precision="28" Scale="8" />
+          <Property Name="FFailAuxQty" Type="decimal" Precision="28" Scale="8" />
+          <Property Name="FBiller" Type="varchar" MaxLength="200" />
+          <Property Name="FBillTime" Type="datetime" />
+          <Property Name="FChecker" Type="varchar" MaxLength="200" />
+          <Property Name="FCheckTime" Type="datetime" />
+          <Property Name="FCloser" Type="varchar" MaxLength="200" />
+          <Property Name="FCloseTime" Type="datetime" />
+          <Property Name="FPrintCount" Type="int" Nullable="false" />
+          <Property Name="FNote" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ICMOInspectBill">
+          <Key>
+            <PropertyRef Name="FID" />
+          </Key>
+          <Property Name="FID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FMOInterID" Type="int" />
+          <Property Name="FBillNo" Type="varchar" MaxLength="100" />
+          <Property Name="FTranType" Type="int" Nullable="false" />
+          <Property Name="FStatus" Type="int" Nullable="false" />
+          <Property Name="FOperID" Type="int" />
+          <Property Name="FWorkcenterID" Type="int" />
+          <Property Name="FMachineID" Type="int" />
+          <Property Name="FAuxQty" Type="decimal" Precision="28" Scale="8" />
+          <Property Name="FCheckAuxQty" Type="decimal" Precision="28" Scale="8" />
+          <Property Name="FPassAuxQty" Type="decimal" Precision="28" Scale="8" />
+          <Property Name="FFailAuxQty" Type="decimal" Precision="28" Scale="8" />
+          <Property Name="FFailAuxQtyP" Type="decimal" Precision="28" Scale="8" />
+          <Property Name="FFailAuxQtyM" Type="decimal" Precision="28" Scale="8" />
+          <Property Name="FPassAuxQtyP" Type="decimal" Precision="28" Scale="8" />
+          <Property Name="FPassAuxQtyM" Type="decimal" Precision="28" Scale="8" />
+          <Property Name="FNote" Type="varchar" MaxLength="255" />
+          <Property Name="FWorker" Type="varchar" MaxLength="100" />
+          <Property Name="FInspector" Type="varchar" MaxLength="100" />
+          <Property Name="FInspectTime" Type="datetime" />
+          <Property Name="FBiller" Type="varchar" MaxLength="100" />
+          <Property Name="FBillTime" Type="datetime" />
+          <Property Name="FChecker" Type="varchar" MaxLength="100" />
+          <Property Name="FCheckTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ICMOSchedule">
+          <Key>
+            <PropertyRef Name="FID" />
+          </Key>
+          <Property Name="FID" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="FBillNo" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="FTranType" Type="int" Nullable="false" />
+          <Property Name="FMOInterID" Type="int" Nullable="false" />
+          <Property Name="FMOBillNo" Type="varchar" MaxLength="200" />
+          <Property Name="FStatus" Type="int" Nullable="false" />
+          <Property Name="FCancellation" Type="bit" />
+          <Property Name="FClosed" Type="bit" />
+          <Property Name="FSrcAuxQty" Type="decimal" Precision="28" Scale="8" />
+          <Property Name="FPlanAuxQty" Type="decimal" Precision="28" Scale="8" />
+          <Property Name="FFinishAuxQty" Type="decimal" Precision="28" Scale="8" />
+          <Property Name="FPassAuxQty" Type="decimal" Precision="38" Scale="10" />
+          <Property Name="FFailAuxQty" Type="decimal" Precision="38" Scale="10" />
+          <Property Name="FPlanBeginDate" Type="datetime" />
+          <Property Name="FPlanFinishDate" Type="datetime" />
+          <Property Name="FFinishDate" Type="datetime" />
+          <Property Name="FBiller" Type="varchar" MaxLength="100" />
+          <Property Name="FBillTime" Type="datetime" />
+          <Property Name="FChecker" Type="varchar" MaxLength="100" />
+          <Property Name="FCheckTime" Type="datetime" />
+          <Property Name="FCloser" Type="varchar" MaxLength="200" />
+          <Property Name="FCloseTime" Type="datetime" />
+          <Property Name="FNote" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ICQualityRpt">
+          <Key>
+            <PropertyRef Name="FID" />
+            <PropertyRef Name="FItemID" />
+          </Key>
+          <Property Name="FID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FItemID" Type="int" Nullable="false" />
+          <Property Name="FAuxQty" Type="decimal" Precision="28" Scale="8" />
+          <Property Name="FRemark" Type="varchar" MaxLength="255" />
+          <Property Name="FNote" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="T_PrintTemplate">
+          <Key>
+            <PropertyRef Name="FInterID" />
+          </Key>
+          <Property Name="FInterID" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="FUserID" Type="int" />
+          <Property Name="FTranType" Type="int" Nullable="false" />
+          <Property Name="FType" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FItemID" Type="int" Nullable="false" />
+          <Property Name="FFileDir" Type="varchar" MaxLength="200" />
+          <Property Name="FFile" Type="image" />
+          <Property Name="FNote" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="TB_BadItemRelation">
+          <Key>
+            <PropertyRef Name="FID" />
+          </Key>
+          <Property Name="FID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FItemID" Type="int" />
+          <Property Name="FOperID" Type="int" Nullable="false" />
+          <Property Name="FNumber" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="FName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="FDeleted" Type="bit" />
+          <Property Name="FRemark" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“DIME2Barcode.dbo.VW_MOBillList”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="VW_MOBillList">
+          <Key>
+            <PropertyRef Name="任务单号" />
+            <PropertyRef Name="销售订单" />
+            <PropertyRef Name="产品名称" />
+            <PropertyRef Name="单位" />
+            <PropertyRef Name="批号" />
+            <PropertyRef Name="计划生产数量" />
+            <PropertyRef Name="入库数量" />
+            <PropertyRef Name="FMOInterID" />
+            <PropertyRef Name="FStatus" />
+          </Key>
+          <Property Name="任务单号" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="状态" Type="varchar" MaxLength="255" />
+          <Property Name="销售订单" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="车间" Type="varchar" MaxLength="80" />
+          <Property Name="产品编码" Type="varchar" MaxLength="80" />
+          <Property Name="产品名称" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="规格型号" Type="varchar" MaxLength="255" />
+          <Property Name="单位" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="批号" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="计划生产数量" Type="decimal" Precision="28" Scale="10" Nullable="false" />
+          <Property Name="入库数量" Type="decimal" Precision="28" Scale="10" Nullable="false" />
+          <Property Name="计划开工日期" Type="datetime" />
+          <Property Name="计划完工日期" Type="datetime" />
+          <Property Name="FMOInterID" Type="int" Nullable="false" />
+          <Property Name="FStatus" Type="smallint" Nullable="false" />
+        </EntityType>
+        <Function Name="GetMODailyList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MOInterID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="DIME2BarcodeStoreContainer">
+          <EntitySet Name="BillStatus" EntityType="Self.BillStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ICException" EntityType="Self.ICException" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ICMaterialPicking" EntityType="Self.ICMaterialPicking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ICMODaily" EntityType="Self.ICMODaily" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ICMODispBill" EntityType="Self.ICMODispBill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ICMOInspectBill" EntityType="Self.ICMOInspectBill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ICMOSchedule" EntityType="Self.ICMOSchedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ICQualityRpt" EntityType="Self.ICQualityRpt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_PrintTemplate" EntityType="Self.T_PrintTemplate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_BadItemRelation" EntityType="Self.TB_BadItemRelation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VW_MOBillList" EntityType="Self.VW_MOBillList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_MOBillList].[任务单号] AS [任务单号], 
+    [VW_MOBillList].[状态] AS [状态], 
+    [VW_MOBillList].[销售订单] AS [销售订单], 
+    [VW_MOBillList].[车间] AS [车间], 
+    [VW_MOBillList].[产品编码] AS [产品编码], 
+    [VW_MOBillList].[产品名称] AS [产品名称], 
+    [VW_MOBillList].[规格型号] AS [规格型号], 
+    [VW_MOBillList].[单位] AS [单位], 
+    [VW_MOBillList].[批号] AS [批号], 
+    [VW_MOBillList].[计划生产数量] AS [计划生产数量], 
+    [VW_MOBillList].[入库数量] AS [入库数量], 
+    [VW_MOBillList].[计划开工日期] AS [计划开工日期], 
+    [VW_MOBillList].[计划完工日期] AS [计划完工日期], 
+    [VW_MOBillList].[FMOInterID] AS [FMOInterID], 
+    [VW_MOBillList].[FStatus] AS [FStatus]
+    FROM [dbo].[VW_MOBillList] AS [VW_MOBillList]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DIME2Barcode" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DIME2BarcodeContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="VW_MOBillList" EntityType="DIME2Barcode.VW_MOBillList" />
+          <EntitySet Name="BillStatus" EntityType="DIME2Barcode.BillStatus" />
+          <EntitySet Name="ICException" EntityType="DIME2Barcode.ICException" />
+          <EntitySet Name="ICMaterialPicking" EntityType="DIME2Barcode.ICMaterialPicking" />
+          <EntitySet Name="ICMODaily" EntityType="DIME2Barcode.ICMODaily" />
+          <EntitySet Name="ICMODispBill" EntityType="DIME2Barcode.ICMODispBill" />
+          <EntitySet Name="ICMOInspectBill" EntityType="DIME2Barcode.ICMOInspectBill" />
+          <EntitySet Name="ICMOSchedule" EntityType="DIME2Barcode.ICMOSchedule" />
+          <EntitySet Name="ICQualityRpt" EntityType="DIME2Barcode.ICQualityRpt" />
+          <EntitySet Name="T_PrintTemplate" EntityType="DIME2Barcode.T_PrintTemplate" />
+          <EntitySet Name="TB_BadItemRelation" EntityType="DIME2Barcode.TB_BadItemRelation" />
+          <FunctionImport Name="GetMODailyList">
+            <Parameter Name="MOInterID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="VW_MOBillList">
+          <Key>
+            <PropertyRef Name="任务单号" />
+            <PropertyRef Name="销售订单" />
+            <PropertyRef Name="产品名称" />
+            <PropertyRef Name="单位" />
+            <PropertyRef Name="批号" />
+            <PropertyRef Name="计划生产数量" />
+            <PropertyRef Name="入库数量" />
+            <PropertyRef Name="FMOInterID" />
+            <PropertyRef Name="FStatus" />
+          </Key>
+          <Property Name="任务单号" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="状态" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="销售订单" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="车间" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="产品编码" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="产品名称" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="规格型号" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="单位" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="批号" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="计划生产数量" Type="Decimal" Nullable="false" Precision="28" Scale="10" />
+          <Property Name="入库数量" Type="Decimal" Nullable="false" Precision="28" Scale="10" />
+          <Property Name="计划开工日期" Type="DateTime" Precision="3" />
+          <Property Name="计划完工日期" Type="DateTime" Precision="3" />
+          <Property Name="FMOInterID" Type="Int32" Nullable="false" />
+          <Property Name="FStatus" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BillStatus">
+          <Key>
+            <PropertyRef Name="FTranType" />
+            <PropertyRef Name="FStatus" />
+          </Key>
+          <Property Name="FTranType" Type="Int32" Nullable="false" />
+          <Property Name="FTranName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FStatus" Type="Int32" Nullable="false" />
+          <Property Name="FName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FNote" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ICException">
+          <Key>
+            <PropertyRef Name="FID" />
+          </Key>
+          <Property Name="FID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FSrcID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FBiller" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FTime" Type="DateTime" Precision="3" />
+          <Property Name="FRemark" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FRecoverTime" Type="DateTime" Precision="3" />
+          <Property Name="FNote" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ICMaterialPicking">
+          <Key>
+            <PropertyRef Name="FID" />
+          </Key>
+          <Property Name="FID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FSrcID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FEntryID" Type="Int32" Nullable="false" />
+          <Property Name="FItemID" Type="Int32" />
+          <Property Name="FUnitID" Type="Int32" />
+          <Property Name="FBatchNo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FAuxQty" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="FBiller" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FDate" Type="DateTime" Precision="3" />
+          <Property Name="FNote" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ICMODaily">
+          <Key>
+            <PropertyRef Name="FID" />
+          </Key>
+          <Property Name="FID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FSrcID" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FBillNo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FTranType" Type="Int32" />
+          <Property Name="FStatus" Type="Int32" Nullable="false" />
+          <Property Name="FClosed" Type="Boolean" />
+          <Property Name="FMOInterID" Type="Int32" />
+          <Property Name="FMOBillNo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FEntryID" Type="Int32" Nullable="false" />
+          <Property Name="FDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FShift" Type="Int32" />
+          <Property Name="FWorkCenterID" Type="Int32" />
+          <Property Name="FMachineID" Type="Int32" />
+          <Property Name="FWorker" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FPlanAuxQty" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="FCommitAuxQty" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="FFinishAuxQty" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="FPassAuxQty" Type="Decimal" Precision="38" Scale="10" />
+          <Property Name="FFailAuxQty" Type="Decimal" Precision="38" Scale="10" />
+          <Property Name="FOperID" Type="Int32" />
+          <Property Name="FOperNote" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="FBiller" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FBillTime" Type="DateTime" Precision="3" />
+          <Property Name="FChecker" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FCheckTime" Type="DateTime" Precision="3" />
+          <Property Name="FCloser" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FCloseTime" Type="DateTime" Precision="3" />
+          <Property Name="FNote" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ICMODispBill">
+          <Key>
+            <PropertyRef Name="FID" />
+          </Key>
+          <Property Name="FID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FSrcID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FBillNo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FTranType" Type="Int32" Nullable="false" />
+          <Property Name="FStatus" Type="Int32" Nullable="false" />
+          <Property Name="FClosed" Type="Boolean" />
+          <Property Name="FMOInterID" Type="Int32" />
+          <Property Name="FMOBillNo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FShift" Type="Int32" />
+          <Property Name="FOperID" Type="Int32" />
+          <Property Name="FWorkCenterID" Type="Int32" />
+          <Property Name="FMachineID" Type="Int32" />
+          <Property Name="FWorker" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FPlanAuxQty" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="FCommitAuxQty" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="FFinishAuxQty" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="FFInspectAuxQty" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="FPassAuxQty" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="FFailAuxQty" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="FBiller" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FBillTime" Type="DateTime" Precision="3" />
+          <Property Name="FChecker" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FCheckTime" Type="DateTime" Precision="3" />
+          <Property Name="FCloser" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FCloseTime" Type="DateTime" Precision="3" />
+          <Property Name="FPrintCount" Type="Int32" Nullable="false" />
+          <Property Name="FNote" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ICMOInspectBill">
+          <Key>
+            <PropertyRef Name="FID" />
+          </Key>
+          <Property Name="FID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FMOInterID" Type="Int32" />
+          <Property Name="FBillNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FTranType" Type="Int32" Nullable="false" />
+          <Property Name="FStatus" Type="Int32" Nullable="false" />
+          <Property Name="FOperID" Type="Int32" />
+          <Property Name="FWorkcenterID" Type="Int32" />
+          <Property Name="FMachineID" Type="Int32" />
+          <Property Name="FAuxQty" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="FCheckAuxQty" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="FPassAuxQty" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="FFailAuxQty" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="FFailAuxQtyP" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="FFailAuxQtyM" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="FPassAuxQtyP" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="FPassAuxQtyM" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="FNote" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FWorker" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FInspector" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FInspectTime" Type="DateTime" Precision="3" />
+          <Property Name="FBiller" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FBillTime" Type="DateTime" Precision="3" />
+          <Property Name="FChecker" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FCheckTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ICMOSchedule">
+          <Key>
+            <PropertyRef Name="FID" />
+          </Key>
+          <Property Name="FID" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FBillNo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FTranType" Type="Int32" Nullable="false" />
+          <Property Name="FMOInterID" Type="Int32" Nullable="false" />
+          <Property Name="FMOBillNo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FStatus" Type="Int32" Nullable="false" />
+          <Property Name="FCancellation" Type="Boolean" />
+          <Property Name="FClosed" Type="Boolean" />
+          <Property Name="FSrcAuxQty" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="FPlanAuxQty" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="FFinishAuxQty" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="FPassAuxQty" Type="Decimal" Precision="38" Scale="10" />
+          <Property Name="FFailAuxQty" Type="Decimal" Precision="38" Scale="10" />
+          <Property Name="FPlanBeginDate" Type="DateTime" Precision="3" />
+          <Property Name="FPlanFinishDate" Type="DateTime" Precision="3" />
+          <Property Name="FFinishDate" Type="DateTime" Precision="3" />
+          <Property Name="FBiller" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FBillTime" Type="DateTime" Precision="3" />
+          <Property Name="FChecker" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FCheckTime" Type="DateTime" Precision="3" />
+          <Property Name="FCloser" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FCloseTime" Type="DateTime" Precision="3" />
+          <Property Name="FNote" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ICQualityRpt">
+          <Key>
+            <PropertyRef Name="FID" />
+            <PropertyRef Name="FItemID" />
+          </Key>
+          <Property Name="FID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FItemID" Type="Int32" Nullable="false" />
+          <Property Name="FAuxQty" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="FRemark" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FNote" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="T_PrintTemplate">
+          <Key>
+            <PropertyRef Name="FInterID" />
+          </Key>
+          <Property Name="FInterID" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FUserID" Type="Int32" />
+          <Property Name="FTranType" Type="Int32" Nullable="false" />
+          <Property Name="FType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FItemID" Type="Int32" Nullable="false" />
+          <Property Name="FFileDir" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FFile" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="FNote" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TB_BadItemRelation">
+          <Key>
+            <PropertyRef Name="FID" />
+          </Key>
+          <Property Name="FID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FItemID" Type="Int32" />
+          <Property Name="FOperID" Type="Int32" Nullable="false" />
+          <Property Name="FNumber" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FDeleted" Type="Boolean" />
+          <Property Name="FRemark" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="DIME2Barcode" />
+        <Alias Key="Target" Value="DIME2Barcode.Store" />
+        <EntityContainerMapping CdmEntityContainer="DIME2BarcodeContainer" StorageEntityContainer="DIME2BarcodeStoreContainer">
+          <EntitySetMapping Name="VW_MOBillList">
+            <EntityTypeMapping TypeName="DIME2Barcode.VW_MOBillList">
+              <MappingFragment StoreEntitySet="VW_MOBillList">
+                <ScalarProperty Name="FStatus" ColumnName="FStatus" />
+                <ScalarProperty Name="FMOInterID" ColumnName="FMOInterID" />
+                <ScalarProperty Name="计划完工日期" ColumnName="计划完工日期" />
+                <ScalarProperty Name="计划开工日期" ColumnName="计划开工日期" />
+                <ScalarProperty Name="入库数量" ColumnName="入库数量" />
+                <ScalarProperty Name="计划生产数量" ColumnName="计划生产数量" />
+                <ScalarProperty Name="批号" ColumnName="批号" />
+                <ScalarProperty Name="单位" ColumnName="单位" />
+                <ScalarProperty Name="规格型号" ColumnName="规格型号" />
+                <ScalarProperty Name="产品名称" ColumnName="产品名称" />
+                <ScalarProperty Name="产品编码" ColumnName="产品编码" />
+                <ScalarProperty Name="车间" ColumnName="车间" />
+                <ScalarProperty Name="销售订单" ColumnName="销售订单" />
+                <ScalarProperty Name="状态" ColumnName="状态" />
+                <ScalarProperty Name="任务单号" ColumnName="任务单号" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BillStatus">
+            <EntityTypeMapping TypeName="DIME2Barcode.BillStatus">
+              <MappingFragment StoreEntitySet="BillStatus">
+                <ScalarProperty Name="FNote" ColumnName="FNote" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="FStatus" ColumnName="FStatus" />
+                <ScalarProperty Name="FTranName" ColumnName="FTranName" />
+                <ScalarProperty Name="FTranType" ColumnName="FTranType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ICException">
+            <EntityTypeMapping TypeName="DIME2Barcode.ICException">
+              <MappingFragment StoreEntitySet="ICException">
+                <ScalarProperty Name="FNote" ColumnName="FNote" />
+                <ScalarProperty Name="FRecoverTime" ColumnName="FRecoverTime" />
+                <ScalarProperty Name="FRemark" ColumnName="FRemark" />
+                <ScalarProperty Name="FTime" ColumnName="FTime" />
+                <ScalarProperty Name="FBiller" ColumnName="FBiller" />
+                <ScalarProperty Name="FSrcID" ColumnName="FSrcID" />
+                <ScalarProperty Name="FID" ColumnName="FID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ICMaterialPicking">
+            <EntityTypeMapping TypeName="DIME2Barcode.ICMaterialPicking">
+              <MappingFragment StoreEntitySet="ICMaterialPicking">
+                <ScalarProperty Name="FNote" ColumnName="FNote" />
+                <ScalarProperty Name="FDate" ColumnName="FDate" />
+                <ScalarProperty Name="FBiller" ColumnName="FBiller" />
+                <ScalarProperty Name="FAuxQty" ColumnName="FAuxQty" />
+                <ScalarProperty Name="FBatchNo" ColumnName="FBatchNo" />
+                <ScalarProperty Name="FUnitID" ColumnName="FUnitID" />
+                <ScalarProperty Name="FItemID" ColumnName="FItemID" />
+                <ScalarProperty Name="FEntryID" ColumnName="FEntryID" />
+                <ScalarProperty Name="FSrcID" ColumnName="FSrcID" />
+                <ScalarProperty Name="FID" ColumnName="FID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ICMODaily">
+            <EntityTypeMapping TypeName="DIME2Barcode.ICMODaily">
+              <MappingFragment StoreEntitySet="ICMODaily">
+                <ScalarProperty Name="FNote" ColumnName="FNote" />
+                <ScalarProperty Name="FCloseTime" ColumnName="FCloseTime" />
+                <ScalarProperty Name="FCloser" ColumnName="FCloser" />
+                <ScalarProperty Name="FCheckTime" ColumnName="FCheckTime" />
+                <ScalarProperty Name="FChecker" ColumnName="FChecker" />
+                <ScalarProperty Name="FBillTime" ColumnName="FBillTime" />
+                <ScalarProperty Name="FBiller" ColumnName="FBiller" />
+                <ScalarProperty Name="FOperNote" ColumnName="FOperNote" />
+                <ScalarProperty Name="FOperID" ColumnName="FOperID" />
+                <ScalarProperty Name="FFailAuxQty" ColumnName="FFailAuxQty" />
+                <ScalarProperty Name="FPassAuxQty" ColumnName="FPassAuxQty" />
+                <ScalarProperty Name="FFinishAuxQty" ColumnName="FFinishAuxQty" />
+                <ScalarProperty Name="FCommitAuxQty" ColumnName="FCommitAuxQty" />
+                <ScalarProperty Name="FPlanAuxQty" ColumnName="FPlanAuxQty" />
+                <ScalarProperty Name="FWorker" ColumnName="FWorker" />
+                <ScalarProperty Name="FMachineID" ColumnName="FMachineID" />
+                <ScalarProperty Name="FWorkCenterID" ColumnName="FWorkCenterID" />
+                <ScalarProperty Name="FShift" ColumnName="FShift" />
+                <ScalarProperty Name="FDate" ColumnName="FDate" />
+                <ScalarProperty Name="FEntryID" ColumnName="FEntryID" />
+                <ScalarProperty Name="FMOBillNo" ColumnName="FMOBillNo" />
+                <ScalarProperty Name="FMOInterID" ColumnName="FMOInterID" />
+                <ScalarProperty Name="FClosed" ColumnName="FClosed" />
+                <ScalarProperty Name="FStatus" ColumnName="FStatus" />
+                <ScalarProperty Name="FTranType" ColumnName="FTranType" />
+                <ScalarProperty Name="FBillNo" ColumnName="FBillNo" />
+                <ScalarProperty Name="FSrcID" ColumnName="FSrcID" />
+                <ScalarProperty Name="FID" ColumnName="FID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ICMODispBill">
+            <EntityTypeMapping TypeName="DIME2Barcode.ICMODispBill">
+              <MappingFragment StoreEntitySet="ICMODispBill">
+                <ScalarProperty Name="FNote" ColumnName="FNote" />
+                <ScalarProperty Name="FPrintCount" ColumnName="FPrintCount" />
+                <ScalarProperty Name="FCloseTime" ColumnName="FCloseTime" />
+                <ScalarProperty Name="FCloser" ColumnName="FCloser" />
+                <ScalarProperty Name="FCheckTime" ColumnName="FCheckTime" />
+                <ScalarProperty Name="FChecker" ColumnName="FChecker" />
+                <ScalarProperty Name="FBillTime" ColumnName="FBillTime" />
+                <ScalarProperty Name="FBiller" ColumnName="FBiller" />
+                <ScalarProperty Name="FFailAuxQty" ColumnName="FFailAuxQty" />
+                <ScalarProperty Name="FPassAuxQty" ColumnName="FPassAuxQty" />
+                <ScalarProperty Name="FFInspectAuxQty" ColumnName="FFInspectAuxQty" />
+                <ScalarProperty Name="FFinishAuxQty" ColumnName="FFinishAuxQty" />
+                <ScalarProperty Name="FCommitAuxQty" ColumnName="FCommitAuxQty" />
+                <ScalarProperty Name="FPlanAuxQty" ColumnName="FPlanAuxQty" />
+                <ScalarProperty Name="FWorker" ColumnName="FWorker" />
+                <ScalarProperty Name="FMachineID" ColumnName="FMachineID" />
+                <ScalarProperty Name="FWorkCenterID" ColumnName="FWorkCenterID" />
+                <ScalarProperty Name="FOperID" ColumnName="FOperID" />
+                <ScalarProperty Name="FShift" ColumnName="FShift" />
+                <ScalarProperty Name="FDate" ColumnName="FDate" />
+                <ScalarProperty Name="FMOBillNo" ColumnName="FMOBillNo" />
+                <ScalarProperty Name="FMOInterID" ColumnName="FMOInterID" />
+                <ScalarProperty Name="FClosed" ColumnName="FClosed" />
+                <ScalarProperty Name="FStatus" ColumnName="FStatus" />
+                <ScalarProperty Name="FTranType" ColumnName="FTranType" />
+                <ScalarProperty Name="FBillNo" ColumnName="FBillNo" />
+                <ScalarProperty Name="FSrcID" ColumnName="FSrcID" />
+                <ScalarProperty Name="FID" ColumnName="FID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ICMOInspectBill">
+            <EntityTypeMapping TypeName="DIME2Barcode.ICMOInspectBill">
+              <MappingFragment StoreEntitySet="ICMOInspectBill">
+                <ScalarProperty Name="FCheckTime" ColumnName="FCheckTime" />
+                <ScalarProperty Name="FChecker" ColumnName="FChecker" />
+                <ScalarProperty Name="FBillTime" ColumnName="FBillTime" />
+                <ScalarProperty Name="FBiller" ColumnName="FBiller" />
+                <ScalarProperty Name="FInspectTime" ColumnName="FInspectTime" />
+                <ScalarProperty Name="FInspector" ColumnName="FInspector" />
+                <ScalarProperty Name="FWorker" ColumnName="FWorker" />
+                <ScalarProperty Name="FNote" ColumnName="FNote" />
+                <ScalarProperty Name="FPassAuxQtyM" ColumnName="FPassAuxQtyM" />
+                <ScalarProperty Name="FPassAuxQtyP" ColumnName="FPassAuxQtyP" />
+                <ScalarProperty Name="FFailAuxQtyM" ColumnName="FFailAuxQtyM" />
+                <ScalarProperty Name="FFailAuxQtyP" ColumnName="FFailAuxQtyP" />
+                <ScalarProperty Name="FFailAuxQty" ColumnName="FFailAuxQty" />
+                <ScalarProperty Name="FPassAuxQty" ColumnName="FPassAuxQty" />
+                <ScalarProperty Name="FCheckAuxQty" ColumnName="FCheckAuxQty" />
+                <ScalarProperty Name="FAuxQty" ColumnName="FAuxQty" />
+                <ScalarProperty Name="FMachineID" ColumnName="FMachineID" />
+                <ScalarProperty Name="FWorkcenterID" ColumnName="FWorkcenterID" />
+                <ScalarProperty Name="FOperID" ColumnName="FOperID" />
+                <ScalarProperty Name="FStatus" ColumnName="FStatus" />
+                <ScalarProperty Name="FTranType" ColumnName="FTranType" />
+                <ScalarProperty Name="FBillNo" ColumnName="FBillNo" />
+                <ScalarProperty Name="FMOInterID" ColumnName="FMOInterID" />
+                <ScalarProperty Name="FID" ColumnName="FID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ICMOSchedule">
+            <EntityTypeMapping TypeName="DIME2Barcode.ICMOSchedule">
+              <MappingFragment StoreEntitySet="ICMOSchedule">
+                <ScalarProperty Name="FNote" ColumnName="FNote" />
+                <ScalarProperty Name="FCloseTime" ColumnName="FCloseTime" />
+                <ScalarProperty Name="FCloser" ColumnName="FCloser" />
+                <ScalarProperty Name="FCheckTime" ColumnName="FCheckTime" />
+                <ScalarProperty Name="FChecker" ColumnName="FChecker" />
+                <ScalarProperty Name="FBillTime" ColumnName="FBillTime" />
+                <ScalarProperty Name="FBiller" ColumnName="FBiller" />
+                <ScalarProperty Name="FFinishDate" ColumnName="FFinishDate" />
+                <ScalarProperty Name="FPlanFinishDate" ColumnName="FPlanFinishDate" />
+                <ScalarProperty Name="FPlanBeginDate" ColumnName="FPlanBeginDate" />
+                <ScalarProperty Name="FFailAuxQty" ColumnName="FFailAuxQty" />
+                <ScalarProperty Name="FPassAuxQty" ColumnName="FPassAuxQty" />
+                <ScalarProperty Name="FFinishAuxQty" ColumnName="FFinishAuxQty" />
+                <ScalarProperty Name="FPlanAuxQty" ColumnName="FPlanAuxQty" />
+                <ScalarProperty Name="FSrcAuxQty" ColumnName="FSrcAuxQty" />
+                <ScalarProperty Name="FClosed" ColumnName="FClosed" />
+                <ScalarProperty Name="FCancellation" ColumnName="FCancellation" />
+                <ScalarProperty Name="FStatus" ColumnName="FStatus" />
+                <ScalarProperty Name="FMOBillNo" ColumnName="FMOBillNo" />
+                <ScalarProperty Name="FMOInterID" ColumnName="FMOInterID" />
+                <ScalarProperty Name="FTranType" ColumnName="FTranType" />
+                <ScalarProperty Name="FBillNo" ColumnName="FBillNo" />
+                <ScalarProperty Name="FID" ColumnName="FID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ICQualityRpt">
+            <EntityTypeMapping TypeName="DIME2Barcode.ICQualityRpt">
+              <MappingFragment StoreEntitySet="ICQualityRpt">
+                <ScalarProperty Name="FNote" ColumnName="FNote" />
+                <ScalarProperty Name="FRemark" ColumnName="FRemark" />
+                <ScalarProperty Name="FAuxQty" ColumnName="FAuxQty" />
+                <ScalarProperty Name="FItemID" ColumnName="FItemID" />
+                <ScalarProperty Name="FID" ColumnName="FID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_PrintTemplate">
+            <EntityTypeMapping TypeName="DIME2Barcode.T_PrintTemplate">
+              <MappingFragment StoreEntitySet="T_PrintTemplate">
+                <ScalarProperty Name="FNote" ColumnName="FNote" />
+                <ScalarProperty Name="FFile" ColumnName="FFile" />
+                <ScalarProperty Name="FFileDir" ColumnName="FFileDir" />
+                <ScalarProperty Name="FItemID" ColumnName="FItemID" />
+                <ScalarProperty Name="FType" ColumnName="FType" />
+                <ScalarProperty Name="FTranType" ColumnName="FTranType" />
+                <ScalarProperty Name="FUserID" ColumnName="FUserID" />
+                <ScalarProperty Name="FInterID" ColumnName="FInterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_BadItemRelation">
+            <EntityTypeMapping TypeName="DIME2Barcode.TB_BadItemRelation">
+              <MappingFragment StoreEntitySet="TB_BadItemRelation">
+                <ScalarProperty Name="FRemark" ColumnName="FRemark" />
+                <ScalarProperty Name="FDeleted" ColumnName="FDeleted" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="FNumber" ColumnName="FNumber" />
+                <ScalarProperty Name="FOperID" ColumnName="FOperID" />
+                <ScalarProperty Name="FItemID" ColumnName="FItemID" />
+                <ScalarProperty Name="FID" ColumnName="FID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetMODailyList" FunctionName="DIME2Barcode.Store.GetMODailyList" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
