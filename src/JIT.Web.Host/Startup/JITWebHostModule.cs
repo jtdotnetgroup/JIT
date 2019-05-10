@@ -3,11 +3,12 @@ using Microsoft.Extensions.Configuration;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using JIT.Configuration;
+using JITEF;
 
 namespace JIT.Web.Host.Startup
 {
     [DependsOn(
-       typeof(JITWebCoreModule))]
+       typeof(JITWebCoreModule),typeof(JITEFModule))]
     public class JITWebHostModule: AbpModule
     {
         private readonly IHostingEnvironment _env;
