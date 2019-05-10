@@ -31,7 +31,6 @@ namespace JIT.EntityFrameworkCore
                         JITDbContextConfigurer.Configure(options.DbContextOptions, options.ConnectionString);
                     }
                 });
-
             }
         }
 
