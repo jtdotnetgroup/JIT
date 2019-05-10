@@ -2,12 +2,14 @@
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using JIT.Authorization;
+using JITEF;
 
 namespace JIT
 {
     [DependsOn(
         typeof(JITCoreModule), 
-        typeof(AbpAutoMapperModule))]
+        typeof(AbpAutoMapperModule)
+        )]
     public class JITApplicationModule : AbpModule
     {
         public override void PreInitialize()
