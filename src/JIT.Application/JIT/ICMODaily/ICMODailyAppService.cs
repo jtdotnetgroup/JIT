@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using Abp.Authorization;
 using Abp.AutoMapper;
 using Abp.Linq.Extensions;
 using JIT.JIT.ICMODaily.Dtos;
@@ -14,7 +16,7 @@ using EntityState = System.Data.Entity.EntityState;
 
 namespace JIT.JIT.ICMODaily
 {
-    public class ICMODailyAppService:IAsyncCrudAppService<ICMODailyDto,string,ICMODailyGetAllInput,ICMODailyDto,ICMODailyDto,ICMODailyDto,ICMODailyDto>
+    public class ICMODailyAppService: IAsyncCrudAppService<ICMODailyDto,string,ICMODailyGetAllInput,ICMODailyDto,ICMODailyDto,ICMODailyDto,ICMODailyDto>
     {
         DIME2BarcodeContext context=new DIME2BarcodeContext();
 
@@ -37,7 +39,18 @@ namespace JIT.JIT.ICMODaily
 
             var count =  query.Count();
 
-            var data =await query.OrderBy(input.Sorting).PageBy(input).ToListAsync();
+            if (input.SkipCount==0)
+            {
+                throw new AbpAuthorizationException("页码是没有0的");
+            }
+
+
+            // var data =await query.OrderBy(input.Sorting).PageBy(input).ToListAsync();
+
+            var data = await query.OrderBy(input.Sorting).Skip(input.MaxResultCount * (input.SkipCount - 1))
+                .Take(input.MaxResultCount).ToListAsync();
+
+
 
             var list = data.MapTo<List<ICMODailyDto>>();
 
