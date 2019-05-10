@@ -212,11 +212,7 @@
     <Compile Include="DIME2Barcode\DIME2BarcondeResolver.cs" />
     <Compile Include="DIME2Barcode\Entities\BillStatus.cs" />
     <Compile Include="DIME2Barcode\Entities\ICMODaily.cs" />
-    <Compile Include="DIME2Barcode\Entities\ICMODispBill.cs" />
-    <Compile Include="DIME2Barcode\Entities\ICMOInspectBill.cs" />
     <Compile Include="DIME2Barcode\Entities\ICMOSchedule.cs" />
-    <Compile Include="DIME2Barcode\Entities\ICQualityRpt.cs" />
-    <Compile Include="DIME2Barcode\Entities\TB_BadItemRelation.cs" />
     <Compile Include="DIME2Barcode\ICException.cs">
       <DependentUpon>DIME2Barcode.tt</DependentUpon>
     </Compile>
