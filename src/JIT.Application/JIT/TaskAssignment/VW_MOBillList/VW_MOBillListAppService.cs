@@ -24,8 +24,8 @@ namespace JTInformationSystem.JIT.TaskAssignment.VW_MOBillList
             var query = from a in context.VW_MOBillList
                 select a;
 
-            var data =await query.OrderBy(input.Sorting).PageBy(input).ToListAsync();
-            var count =await  query.CountAsync();
+            var data = query.OrderBy(input.Sorting).PageBy(input).ToList();
+            var count =  query.Count();
 
             var list = data.MapTo<List<VW_MOBillListDto>>();
 
