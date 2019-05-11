@@ -5,7 +5,7 @@ using Abp.Application.Services.Dto;
 
 namespace JIT.TaskAssignment.ICMODispBill.Dtos
 {
-    public class ICMODispBillGetAllInput : PagedResultRequestDto
+    public class ICMODispBillGetAllInput : PagedAndSortedResultRequestDto
     {
 
     }

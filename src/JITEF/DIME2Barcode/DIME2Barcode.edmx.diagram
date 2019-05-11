@@ -16,6 +16,8 @@
         <EntityTypeShape EntityType="DIME2Barcode.ICQualityRpt" Width="1.5" PointX="7.75" PointY="7.75" />
         <EntityTypeShape EntityType="DIME2Barcode.T_PrintTemplate" Width="1.5" PointX="9.75" PointY="0.75" />
         <EntityTypeShape EntityType="DIME2Barcode.TB_BadItemRelation" Width="1.5" PointX="9.75" PointY="4.75" />
+        <EntityTypeShape EntityType="DIME2Barcode.VW_MOInspectBillList" Width="1.5" PointX="10.375" PointY="8.75" />
+        <EntityTypeShape EntityType="DIME2Barcode.VM_MOICMODispBill" Width="1.5" PointX="5.375" PointY="11.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

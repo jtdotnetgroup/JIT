@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Text;
 using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
-using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
-using AutoMapper.Configuration.Conventions;
+using JIT.JIT.TaskAssignment.VW_MOBillList.Dtos;
 using JIT.TaskAssignment.ICMODispBill.Dtos;
 using JITEF.DIME2Barcode;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +21,27 @@ namespace JIT.TaskAssignment.ICMODispBill
     {
    
         DIME2BarcodeContext context = new DIME2BarcodeContext();
+
+
+        //查询数据
+        public async Task<PagedResultDto<VM_ICMODispBillDto>> GetDaTask(ICMODispBillGetAllInput input)
+        {
+
+            var query = from a in context.VM_MOICMODispBill
+                select a;
+
+            var data = query.OrderBy(input.Sorting).Skip(input.MaxResultCount * (input.SkipCount - 1)).Take(input.MaxResultCount).ToList();
+
+            var count = query.Count();
+
+            var list = data.MapTo<List<VM_ICMODispBillDto>>();
+
+            return new PagedResultDto<VM_ICMODispBillDto>(count, list);
+        }
+
+
+
+
 
         public async Task<ICMODispBillDto> Get(EntityDto<string> input)
         {

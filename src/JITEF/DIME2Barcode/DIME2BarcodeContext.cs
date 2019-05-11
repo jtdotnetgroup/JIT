@@ -37,6 +37,7 @@ namespace JITEF.DIME2Barcode
         public virtual IDbSet<ICQualityRpt> ICQualityRpt { get; set; }
         public virtual IDbSet<T_PrintTemplate> T_PrintTemplate { get; set; }
         public virtual IDbSet<TB_BadItemRelation> TB_BadItemRelation { get; set; }
+        public  virtual IDbSet<VM_MOICMODispBill> VM_MOICMODispBill { get; set; }
 
         public virtual int GetMODailyList(Nullable<int> mOInterID)
         {

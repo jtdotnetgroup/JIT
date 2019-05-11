@@ -9,6 +9,7 @@ using Abp.Domain.Entities.Auditing;
 using Abp.Domain.Repositories;
 using Abp.EntityFrameworkCore.Repositories;
 using Abp.Linq.Extensions;
+using JIT.JIT.TaskAssignment.VW_MOBillList.Dtos;
 using JIT.TaskAssignment.VW_MOBillList.Dtos;
 using JITEF.DIME2Barcode;
 using JTInformationSystem.JIT.TaskAssignment.VW_MOBillList.Dtos;
@@ -35,21 +36,7 @@ namespace JTInformationSystem.JIT.TaskAssignment.VW_MOBillList
             return new PagedResultDto<VW_MOBillListDto>(count,list);
         }
 
-        public async Task<PagedResultDto<VW_MOBillListDto>> GetDaTask(VW_MOBIllListGetAllInput input)
-        {
-            var query = from a in context.ICMOSchedule
-                join b in context.ICMODaily on a.FMOInterID equals b.FMOInterID
-                join cs in context.VW_MOBillList on b.FMOInterID equals cs.FMOInterID
-                select cs;
-
-            var data = query.OrderBy(input.Sorting).Skip(input.MaxResultCount * (input.SkipCount - 1)).Take(input.MaxResultCount).ToList();
-
-            var count = query.Count();
-
-            var list = data.MapTo<List<VW_MOBillListDto>>();
-
-            return new PagedResultDto<VW_MOBillListDto>(count, list);
-        }
+     
 
 
     }

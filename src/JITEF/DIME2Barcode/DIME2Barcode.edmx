@@ -203,6 +203,31 @@
           <Property Name="FRemark" Type="varchar" MaxLength="255" />
         </EntityType>
         <!--生成过程中发现错误:
+警告 6002: 表/视图“DIME2Barcode.dbo.VM_MOICMODispBill”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="VM_MOICMODispBill">
+          <Key>
+            <PropertyRef Name="FSrcID" />
+            <PropertyRef Name="FMOInterID" />
+            <PropertyRef Name="日期" />
+            <PropertyRef Name="计划单号" />
+            <PropertyRef Name="任务单号" />
+            <PropertyRef Name="产品名称" />
+          </Key>
+          <Property Name="FSrcID" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="FMOInterID" Type="int" Nullable="false" />
+          <Property Name="日期" Type="datetime" Nullable="false" />
+          <Property Name="计划单号" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="车间" Type="varchar" MaxLength="80" />
+          <Property Name="任务单号" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="产品名称" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="产品编码" Type="varchar" MaxLength="80" />
+          <Property Name="规格型号" Type="varchar" MaxLength="255" />
+          <Property Name="计划开工日期" Type="datetime" />
+          <Property Name="计划完工日期" Type="datetime" />
+          <Property Name="计划生产数量" Type="decimal" Precision="38" Scale="10" />
+          <Property Name="汇报数量" Type="decimal" Precision="38" Scale="8" />
+        </EntityType>
+        <!--生成过程中发现错误:
 警告 6002: 表/视图“DIME2Barcode.dbo.VW_MOBillList”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="VW_MOBillList">
           <Key>
@@ -232,6 +257,36 @@
           <Property Name="FMOInterID" Type="int" Nullable="false" />
           <Property Name="FStatus" Type="smallint" Nullable="false" />
         </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“DIME2Barcode.dbo.VW_MOInspectBillList”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="VW_MOInspectBillList">
+          <Key>
+            <PropertyRef Name="状态" />
+            <PropertyRef Name="生产日期" />
+            <PropertyRef Name="工作中心" />
+            <PropertyRef Name="设备" />
+            <PropertyRef Name="工序" />
+            <PropertyRef Name="FID" />
+            <PropertyRef Name="FStatus" />
+          </Key>
+          <Property Name="检验单号" Type="varchar" MaxLength="100" />
+          <Property Name="派工单号" Type="varchar" MaxLength="200" />
+          <Property Name="生产任务" Type="varchar" MaxLength="200" />
+          <Property Name="状态" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="生产日期" Type="datetime" Nullable="false" />
+          <Property Name="汇报时间" Type="datetime" />
+          <Property Name="工作中心" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="设备" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="工序" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="汇报数量" Type="decimal" Precision="28" Scale="8" />
+          <Property Name="检验数量" Type="decimal" Precision="28" Scale="8" />
+          <Property Name="合格数量" Type="decimal" Precision="28" Scale="8" />
+          <Property Name="不合格数量" Type="decimal" Precision="28" Scale="8" />
+          <Property Name="检验员" Type="varchar" MaxLength="100" />
+          <Property Name="检验时间" Type="datetime" />
+          <Property Name="FID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FStatus" Type="int" Nullable="false" />
+        </EntityType>
         <Function Name="GetMODailyList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MOInterID" Type="int" Mode="In" />
         </Function>
@@ -246,6 +301,23 @@
           <EntitySet Name="ICQualityRpt" EntityType="Self.ICQualityRpt" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="T_PrintTemplate" EntityType="Self.T_PrintTemplate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TB_BadItemRelation" EntityType="Self.TB_BadItemRelation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VM_MOICMODispBill" EntityType="Self.VM_MOICMODispBill" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VM_MOICMODispBill].[FSrcID] AS [FSrcID], 
+    [VM_MOICMODispBill].[FMOInterID] AS [FMOInterID], 
+    [VM_MOICMODispBill].[日期] AS [日期], 
+    [VM_MOICMODispBill].[计划单号] AS [计划单号], 
+    [VM_MOICMODispBill].[车间] AS [车间], 
+    [VM_MOICMODispBill].[任务单号] AS [任务单号], 
+    [VM_MOICMODispBill].[产品名称] AS [产品名称], 
+    [VM_MOICMODispBill].[产品编码] AS [产品编码], 
+    [VM_MOICMODispBill].[规格型号] AS [规格型号], 
+    [VM_MOICMODispBill].[计划开工日期] AS [计划开工日期], 
+    [VM_MOICMODispBill].[计划完工日期] AS [计划完工日期], 
+    [VM_MOICMODispBill].[计划生产数量] AS [计划生产数量], 
+    [VM_MOICMODispBill].[汇报数量] AS [汇报数量]
+    FROM [dbo].[VM_MOICMODispBill] AS [VM_MOICMODispBill]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="VW_MOBillList" EntityType="Self.VW_MOBillList" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [VW_MOBillList].[任务单号] AS [任务单号], 
@@ -265,6 +337,27 @@
     [VW_MOBillList].[FStatus] AS [FStatus]
     FROM [dbo].[VW_MOBillList] AS [VW_MOBillList]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="VW_MOInspectBillList" EntityType="Self.VW_MOInspectBillList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_MOInspectBillList].[检验单号] AS [检验单号], 
+    [VW_MOInspectBillList].[派工单号] AS [派工单号], 
+    [VW_MOInspectBillList].[生产任务] AS [生产任务], 
+    [VW_MOInspectBillList].[状态] AS [状态], 
+    [VW_MOInspectBillList].[生产日期] AS [生产日期], 
+    [VW_MOInspectBillList].[汇报时间] AS [汇报时间], 
+    [VW_MOInspectBillList].[工作中心] AS [工作中心], 
+    [VW_MOInspectBillList].[设备] AS [设备], 
+    [VW_MOInspectBillList].[工序] AS [工序], 
+    [VW_MOInspectBillList].[汇报数量] AS [汇报数量], 
+    [VW_MOInspectBillList].[检验数量] AS [检验数量], 
+    [VW_MOInspectBillList].[合格数量] AS [合格数量], 
+    [VW_MOInspectBillList].[不合格数量] AS [不合格数量], 
+    [VW_MOInspectBillList].[检验员] AS [检验员], 
+    [VW_MOInspectBillList].[检验时间] AS [检验时间], 
+    [VW_MOInspectBillList].[FID] AS [FID], 
+    [VW_MOInspectBillList].[FStatus] AS [FStatus]
+    FROM [dbo].[VW_MOInspectBillList] AS [VW_MOInspectBillList]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -283,8 +376,10 @@
           <EntitySet Name="T_PrintTemplate" EntityType="DIME2Barcode.T_PrintTemplate" />
           <EntitySet Name="TB_BadItemRelation" EntityType="DIME2Barcode.TB_BadItemRelation" />
           <FunctionImport Name="GetMODailyList">
-            <Parameter Name="MOInterID" Mode="In" Type="Int32" />
+          <Parameter Name="MOInterID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="VW_MOInspectBillList" EntityType="DIME2Barcode.VW_MOInspectBillList" />
+          <EntitySet Name="VM_MOICMODispBill" EntityType="DIME2Barcode.VM_MOICMODispBill" />
         </EntityContainer>
         <EntityType Name="VW_MOBillList">
           <Key>
@@ -510,6 +605,57 @@
           <Property Name="FName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="FDeleted" Type="Boolean" />
           <Property Name="FRemark" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_MOInspectBillList">
+          <Key>
+            <PropertyRef Name="状态" />
+            <PropertyRef Name="生产日期" />
+            <PropertyRef Name="工作中心" />
+            <PropertyRef Name="设备" />
+            <PropertyRef Name="工序" />
+            <PropertyRef Name="FID" />
+            <PropertyRef Name="FStatus" />
+          </Key>
+          <Property Name="检验单号" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="派工单号" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="生产任务" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="状态" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="生产日期" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="汇报时间" Type="DateTime" Precision="3" />
+          <Property Name="工作中心" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="设备" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="工序" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="汇报数量" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="检验数量" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="合格数量" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="不合格数量" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="检验员" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="检验时间" Type="DateTime" Precision="3" />
+          <Property Name="FID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FStatus" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VM_MOICMODispBill">
+          <Key>
+            <PropertyRef Name="日期" />
+            <PropertyRef Name="计划单号" />
+            <PropertyRef Name="任务单号" />
+            <PropertyRef Name="产品名称" />
+            <PropertyRef Name="FSrcID" />
+            <PropertyRef Name="FMOInterID" />
+          </Key>
+          <Property Name="日期" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="计划单号" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="车间" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="任务单号" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="产品名称" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="产品编码" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="规格型号" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="计划开工日期" Type="DateTime" Precision="3" />
+          <Property Name="计划完工日期" Type="DateTime" Precision="3" />
+          <Property Name="计划生产数量" Type="Decimal" Precision="38" Scale="10" />
+          <Property Name="汇报数量" Type="Decimal" Precision="38" Scale="8" />
+          <Property Name="FSrcID" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FMOInterID" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -746,6 +892,48 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="GetMODailyList" FunctionName="DIME2Barcode.Store.GetMODailyList" />
+          <EntitySetMapping Name="VW_MOInspectBillList">
+            <EntityTypeMapping TypeName="DIME2Barcode.VW_MOInspectBillList">
+              <MappingFragment StoreEntitySet="VW_MOInspectBillList">
+                <ScalarProperty Name="FStatus" ColumnName="FStatus" />
+                <ScalarProperty Name="FID" ColumnName="FID" />
+                <ScalarProperty Name="检验时间" ColumnName="检验时间" />
+                <ScalarProperty Name="检验员" ColumnName="检验员" />
+                <ScalarProperty Name="不合格数量" ColumnName="不合格数量" />
+                <ScalarProperty Name="合格数量" ColumnName="合格数量" />
+                <ScalarProperty Name="检验数量" ColumnName="检验数量" />
+                <ScalarProperty Name="汇报数量" ColumnName="汇报数量" />
+                <ScalarProperty Name="工序" ColumnName="工序" />
+                <ScalarProperty Name="设备" ColumnName="设备" />
+                <ScalarProperty Name="工作中心" ColumnName="工作中心" />
+                <ScalarProperty Name="汇报时间" ColumnName="汇报时间" />
+                <ScalarProperty Name="生产日期" ColumnName="生产日期" />
+                <ScalarProperty Name="状态" ColumnName="状态" />
+                <ScalarProperty Name="生产任务" ColumnName="生产任务" />
+                <ScalarProperty Name="派工单号" ColumnName="派工单号" />
+                <ScalarProperty Name="检验单号" ColumnName="检验单号" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VM_MOICMODispBill">
+            <EntityTypeMapping TypeName="DIME2Barcode.VM_MOICMODispBill">
+              <MappingFragment StoreEntitySet="VM_MOICMODispBill">
+                <ScalarProperty Name="FMOInterID" ColumnName="FMOInterID" />
+                <ScalarProperty Name="FSrcID" ColumnName="FSrcID" />
+                <ScalarProperty Name="汇报数量" ColumnName="汇报数量" />
+                <ScalarProperty Name="计划生产数量" ColumnName="计划生产数量" />
+                <ScalarProperty Name="计划完工日期" ColumnName="计划完工日期" />
+                <ScalarProperty Name="计划开工日期" ColumnName="计划开工日期" />
+                <ScalarProperty Name="规格型号" ColumnName="规格型号" />
+                <ScalarProperty Name="产品编码" ColumnName="产品编码" />
+                <ScalarProperty Name="产品名称" ColumnName="产品名称" />
+                <ScalarProperty Name="任务单号" ColumnName="任务单号" />
+                <ScalarProperty Name="车间" ColumnName="车间" />
+                <ScalarProperty Name="计划单号" ColumnName="计划单号" />
+                <ScalarProperty Name="日期" ColumnName="日期" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
