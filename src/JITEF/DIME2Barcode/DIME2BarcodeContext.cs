@@ -34,7 +34,7 @@ namespace JITEF.DIME2Barcode
 
         //    return context;
         //}
-
+        public virtual DbSet<VW_MODispBillList> VW_MODispBillList { get; set; }
         public virtual DbSet<VW_MOBillList> VW_MOBillList { get; set; }
         public virtual DbSet<BillStatus> BillStatus { get; set; }
         public virtual DbSet<ICException> ICException { get; set; }

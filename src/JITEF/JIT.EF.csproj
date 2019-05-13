@@ -242,6 +242,9 @@
     <Compile Include="DIME2Barcode\VW_MOBillList.cs">
       <DependentUpon>DIME2Barcode.tt</DependentUpon>
     </Compile>
+    <Compile Include="DIME2Barcode\VW_MODispBillList.cs">
+      <DependentUpon>DIME2Barcode.tt</DependentUpon>
+    </Compile>
     <Compile Include="JITEFModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
