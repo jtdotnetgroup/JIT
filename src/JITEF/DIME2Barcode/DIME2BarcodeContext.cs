@@ -6,14 +6,17 @@ using System.Data.Entity.Infrastructure;
 using Abp.Dependency;
 using Abp.Domain.Repositories;
 using Abp.EntityFramework;
+using JITEF.DIME2Barcode.Repository;
 
 namespace JITEF.DIME2Barcode
 {
-    public class DIME2BarcodeContext:AbpDbContext,ITransientDependency
+    [AutoRepositoryTypes(
+        typeof(IRepository<>),
+        typeof(IRepository<,>),
+        typeof(DIME2BarcodeRepositoryBase<>),
+        typeof(DIME2BarcodeRepositoryBase<,>))]
+    public partial class DIME2BarcodeContext:AbpDbContext,ITransientDependency
     {
-
-        //private static  DIME2BarcodeContext context;
-        //private static Object obj=new object();
 
         public DIME2BarcodeContext() : base("DIME2BarcodeContainer")
         {
